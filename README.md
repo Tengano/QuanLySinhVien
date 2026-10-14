@@ -1,58 +1,132 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎓 QuanLySinhVien — Hệ thống Quản lý Sinh viên
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Website quản lý sinh viên xây dựng bằng **Laravel 13 + MySQL**, phân quyền theo vai trò
+(**Admin / Giáo vụ / Giảng viên / Sinh viên**), thay thế việc quản lý thủ công bằng Excel;
+hỗ trợ thống kê trực quan và xuất báo cáo Excel/PDF.
 
-## About Laravel
+## 🧰 Công nghệ sử dụng
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+| Thành phần | Công nghệ |
+|---|---|
+| Backend | Laravel 13 (PHP 8.3), Eloquent ORM, mô hình MVC |
+| Cơ sở dữ liệu | MySQL 8.4 — database `qlsv`, charset `utf8mb4` |
+| Frontend | Blade Template + Tailwind CSS 4 + Vite 8 |
+| Xác thực & phân quyền | Auth session (guard có sẵn) + middleware alias `role` |
+| Kiểm thử | PHPUnit 12 (chạy trên SQLite `:memory:`) |
+| Quy trình | Git + Agile/Scrum (GitHub Projects) |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Tính năng (phạm vi MVP)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Quản trị & danh mục**
+- Đăng nhập/đăng xuất, phân quyền 4 vai trò, quản lý tài khoản (tạo/sửa/khoá/reset mật khẩu)
+- Danh mục: Khoa, Ngành, Lớp, Môn học, Học kỳ
 
-## Learning Laravel
+**Nghiệp vụ**
+- Quản lý Sinh viên: CRUD, hồ sơ, import Excel, ảnh đại diện, tìm kiếm & lọc
+- Lớp học phần: tạo lớp, phân công giảng viên, gán sinh viên
+- Điểm: nhập điểm quá trình/thi, tự tính điểm TB – điểm chữ – hệ 4 – GPA; sinh viên tra cứu điểm của mình
+- Dashboard thống kê (biểu đồ theo khoa/lớp, tỉ lệ đạt/rớt, điểm trung bình)
+- Xuất báo cáo danh sách sinh viên & bảng điểm ra Excel/PDF
+- Thông báo nội bộ (giáo vụ gửi, sinh viên xem)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+> **Trạng thái hiện tại:** dự án đang ở **Sprint 0** — khung Laravel đã cài, kết nối MySQL `qlsv` OK.
+> Các tính năng trên nằm trong kế hoạch Sprint 1–6 (xem mục **Lộ trình phát triển** bên dưới).
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✅ Yêu cầu hệ thống
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- **PHP >= 8.3** (bật các extension: `mbstring, openssl, pdo_mysql, tokenizer, xml, ctype, json, bcmath, fileinfo, gd, zip`)
+- **Composer >= 2.x**
+- **MySQL >= 8.0** (khuyến nghị 8.4)
+- **Node.js >= 18** & npm (build asset Vite)
+- **Git**
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## ⚙️ Cài đặt
 
 ```bash
-composer require laravel/boost --dev
+# 1. Cài dependency PHP
+composer install
 
-php artisan boost:install
+# 2. Tạo file môi trường & khoá ứng dụng
+copy .env.example .env        # macOS/Linux: cp .env.example .env
+php artisan key:generate
+
+# 3. Cấu hình kết nối MySQL trong .env
+#    DB_CONNECTION=mysql
+#    DB_DATABASE=qlsv
+#    DB_USERNAME=root
+#    DB_PASSWORD=
+
+# 4. Tạo database rồi chạy migration + seed
+php artisan migrate --seed
+
+# 5. Cài & build asset frontend
+npm install
+npm run build
+
+# 6. Tạo symlink cho ảnh/upload
+php artisan storage:link
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Hoặc chạy nhanh toàn bộ bằng script có sẵn: `composer setup`
 
-## Contributing
+## ▶️ Chạy dự án
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan serve          # http://127.0.0.1:8000
+npm run dev                # Vite dev server (hot reload)
+```
 
-## Code of Conduct
+Nếu dùng **Laragon**: mở Laragon → *Start All*, sau đó truy cập domain ảo (ví dụ `http://qlsv.test`).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🧪 Kiểm thử
 
-## Security Vulnerabilities
+```bash
+php artisan test
+# hoặc: composer test
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Test chạy trên **SQLite `:memory:`**, nên migration phải viết theo cú pháp **portable**
+(dùng `string` + enum PHP thay cho `ENUM` của MySQL, tránh `->fullText()`).
 
-## License
+## 📂 Cấu trúc thư mục
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```text
+app/
+├── Enums/            Role, GioiTinh, TrangThaiSinhVien, ...
+├── Http/
+│   ├── Controllers/  (Admin/ | GiangVien/ | SinhVien/)
+│   ├── Middleware/   EnsureUserHasRole.php
+│   └── Requests/     Form Request validate
+├── Imports/ Exports/ Import/export Excel
+├── Models/           Faculty, Major, Student, Subject, Grade, ...
+├── Policies/         UserPolicy, StudentPolicy, CoursePolicy
+└── Services/         DiemService, GpaService, ThongKeService, ...
+config/               diem.php, qlsv.php
+database/             migrations, seeders, factories
+resources/views/      layouts, partials, components, ...
+routes/web.php
+tests/                Feature | Unit
+```
+
+## 🗺️ Lộ trình phát triển
+
+| Sprint | Nội dung |
+|---|---|
+| **Sprint 0** | Cài đặt môi trường, layout nền, i18n tiếng Việt, enum & config nghiệp vụ |
+| **Sprint 1** | Đăng nhập, phân quyền theo vai trò, quản lý tài khoản, hồ sơ cá nhân |
+| **Sprint 2** | Danh mục: Khoa, Ngành, Lớp, Môn học, Học kỳ |
+| **Sprint 3** | Quản lý Sinh viên: CRUD, import Excel, ảnh, tìm kiếm/lọc |
+| **Sprint 4** | Lớp học phần, nhập điểm, tính điểm TB/GPA tự động |
+| **Sprint 5** | Sinh viên tra cứu điểm, dashboard thống kê biểu đồ |
+| **Sprint 6** | Xuất báo cáo Excel/PDF, thông báo, kiểm thử, hoàn thiện tài liệu |
+
+## 📚 Tài liệu dự án
+
+- [`KE_HOACH_AGILE_QLSV.md`](KE_HOACH_AGILE_QLSV.md) — kế hoạch Agile tổng thể
+- [`KE_HOACH_SPRINT_CHI_TIET.md`](KE_HOACH_SPRINT_CHI_TIET.md) — đặc tả chi tiết từng sprint (task, tiêu chí nghiệm thu, test, demo)
+- [`DANH_SACH_TASK_SPRINT.csv`](DANH_SACH_TASK_SPRINT.csv) — danh sách task dạng bảng
+
+## 📄 Giấy phép
+
+Dự án phát hành theo giấy phép [MIT](https://opensource.org/licenses/MIT), xây dựng trên
+[Laravel framework](https://laravel.com) của Taylor Otwell.
