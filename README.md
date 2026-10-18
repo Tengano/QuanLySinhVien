@@ -2,7 +2,7 @@
 
 Website quản lý sinh viên xây dựng bằng **Laravel 13 + MySQL**, phân quyền theo vai trò
 (**Admin / Giáo vụ / Giảng viên / Sinh viên**), thay thế việc quản lý thủ công bằng Excel;
-hỗ trợ thống kê trực quan và xuất báo cáo Excel/PDF.
+hỗ trợ thống kê trực quan, import/export CSV và in báo cáo/PDF từ trình duyệt.
 
 ## 🧰 Công nghệ sử dụng
 
@@ -22,15 +22,15 @@ hỗ trợ thống kê trực quan và xuất báo cáo Excel/PDF.
 - Danh mục: Khoa, Ngành, Lớp, Môn học, Học kỳ
 
 **Nghiệp vụ**
-- Quản lý Sinh viên: CRUD, hồ sơ, import Excel, ảnh đại diện, tìm kiếm & lọc
+- Quản lý Sinh viên: CRUD, hồ sơ, import CSV (mở được bằng Excel), ảnh đại diện, tìm kiếm & lọc
 - Lớp học phần: tạo lớp, phân công giảng viên, gán sinh viên
 - Điểm: nhập điểm quá trình/thi, tự tính điểm TB – điểm chữ – hệ 4 – GPA; sinh viên tra cứu điểm của mình
 - Dashboard thống kê (biểu đồ theo khoa/lớp, tỉ lệ đạt/rớt, điểm trung bình)
-- Xuất báo cáo danh sách sinh viên & bảng điểm ra Excel/PDF
-- Thông báo nội bộ (giáo vụ gửi, sinh viên xem)
+- Xuất danh sách sinh viên/bảng điểm ra CSV (Excel) và in/Lưu PDF từ trình duyệt
+- Thông báo nội bộ gửi theo toàn trường/khoa/lớp/lớp HP/người dùng
 
-> **Trạng thái hiện tại:** dự án đang ở **Sprint 0** — khung Laravel đã cài, kết nối MySQL `qlsv` OK.
-> Các tính năng trên nằm trong kế hoạch Sprint 1–6 (xem mục **Lộ trình phát triển** bên dưới).
+> **Trạng thái hiện tại:** MVP đã hoàn thiện các sprint 0–6. Hệ thống có **19 test / 143 assertion** chạy pass,
+> build Tailwind thành công và đã seed dữ liệu demo.
 
 ## ✅ Yêu cầu hệ thống
 
@@ -78,6 +78,18 @@ npm run dev                # Vite dev server (hot reload)
 
 Nếu dùng **Laragon**: mở Laragon → *Start All*, sau đó truy cập domain ảo (ví dụ `http://qlsv.test`).
 
+## 🔑 Tài khoản demo
+
+| Vai trò | Email | Mật khẩu |
+|---|---|---|
+| Admin | `admin@qlsv.test` | `Admin@123` |
+| Giáo vụ | `giaovu@qlsv.test` | `Giaovu@123` |
+| Giảng viên | `an.nguyen@qlsv.test` | `Giangvien@123` |
+| Giảng viên | `binh.tran@qlsv.test` | `Giangvien@123` |
+| Sinh viên | `sinhvien@qlsv.test` | `Sinhvien@123` |
+
+> Sinh viên demo `SV001 — Nguyễn Văn An` đã được liên kết với tài khoản `sinhvien@qlsv.test`.
+
 ## 🧪 Kiểm thử
 
 ```bash
@@ -92,39 +104,39 @@ Test chạy trên **SQLite `:memory:`**, nên migration phải viết theo cú p
 
 ```text
 app/
-├── Enums/            Role, GioiTinh, TrangThaiSinhVien, ...
+├── Enums/            Role, GioiTinh, TrangThaiSinhVien, TrangThaiLopHocPhan, ...
 ├── Http/
-│   ├── Controllers/  (Admin/ | GiangVien/ | SinhVien/)
-│   ├── Middleware/   EnsureUserHasRole.php
-│   └── Requests/     Form Request validate
-├── Imports/ Exports/ Import/export Excel
-├── Models/           Faculty, Major, Student, Subject, Grade, ...
-├── Policies/         UserPolicy, StudentPolicy, CoursePolicy
-└── Services/         DiemService, GpaService, ThongKeService, ...
-config/               diem.php, qlsv.php
-database/             migrations, seeders, factories
-resources/views/      layouts, partials, components, ...
+│   ├── Controllers/  Auth, MasterData, Student, Course, Enrollment, Grade, Announcement, Inbox, Portal, Report
+│   └── Middleware/   EnsureUserHasRole.php
+├── Models/           User, Faculty, Major, SchoolClass, Student, Subject, Semester, Course, Enrollment, Grade, Announcement
+├── Policies/         CoursePolicy
+├── Providers/        AppServiceProvider (rate limit đăng nhập)
+└── Services/         DiemService, GpaService, ThongKeService
+config/               diem.php
+database/             migrations, seeders/QlsvDemoSeeder.php
+resources/views/      layouts, partials, auth, dashboard, admin, students, courses, announcements, inbox, portal, reports
 routes/web.php
-tests/                Feature | Unit
+tests/Feature/        ApplicationTest, DatabaseSchemaTest
 ```
 
-## 🗺️ Lộ trình phát triển
+## 🗺️ Lộ trình phát triển (đã hoàn thành MVP)
 
-| Sprint | Nội dung |
-|---|---|
-| **Sprint 0** | Cài đặt môi trường, layout nền, i18n tiếng Việt, enum & config nghiệp vụ |
-| **Sprint 1** | Đăng nhập, phân quyền theo vai trò, quản lý tài khoản, hồ sơ cá nhân |
-| **Sprint 2** | Danh mục: Khoa, Ngành, Lớp, Môn học, Học kỳ |
-| **Sprint 3** | Quản lý Sinh viên: CRUD, import Excel, ảnh, tìm kiếm/lọc |
-| **Sprint 4** | Lớp học phần, nhập điểm, tính điểm TB/GPA tự động |
-| **Sprint 5** | Sinh viên tra cứu điểm, dashboard thống kê biểu đồ |
-| **Sprint 6** | Xuất báo cáo Excel/PDF, thông báo, kiểm thử, hoàn thiện tài liệu |
+| Sprint | Nội dung | Trạng thái |
+|---|---|---|
+| **Sprint 0** | Cài đặt môi trường, layout nền, i18n tiếng Việt, enum & config nghiệp vụ | ✅ |
+| **Sprint 1** | Đăng nhập, phân quyền theo vai trò, quản lý tài khoản, hồ sơ cá nhân | ✅ |
+| **Sprint 2** | Danh mục: Khoa, Ngành, Lớp, Môn học, Học kỳ | ✅ |
+| **Sprint 3** | Quản lý Sinh viên: CRUD, import CSV, ảnh, tìm kiếm/lọc | ✅ |
+| **Sprint 4** | Lớp học phần, ghi danh, nhập điểm, tính điểm TB/GPA tự động | ✅ |
+| **Sprint 5** | Sinh viên tra cứu điểm, dashboard thống kê | ✅ |
+| **Sprint 6** | Báo cáo CSV/in PDF, thông báo, kiểm thử, tài liệu | ✅ |
 
 ## 📚 Tài liệu dự án
 
 - [`KE_HOACH_AGILE_QLSV.md`](KE_HOACH_AGILE_QLSV.md) — kế hoạch Agile tổng thể
 - [`KE_HOACH_SPRINT_CHI_TIET.md`](KE_HOACH_SPRINT_CHI_TIET.md) — đặc tả chi tiết từng sprint (task, tiêu chí nghiệm thu, test, demo)
 - [`DANH_SACH_TASK_SPRINT.csv`](DANH_SACH_TASK_SPRINT.csv) — danh sách task dạng bảng
+- [`USER_STORY_PRODUCT_BACKLOG.md`](USER_STORY_PRODUCT_BACKLOG.md) — User Story, Product Backlog và kế hoạch Sprint
 
 ## 📄 Giấy phép
 
