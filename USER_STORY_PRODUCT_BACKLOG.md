@@ -8,7 +8,7 @@
 > | Stack | Laravel 13.35 · PHP 8.3 · MySQL 8.4 · Tailwind CSS 4 + Vite 8 · PHPUnit 12 |
 > | Mô hình | Scrum rút gọn: **Sprint 0 (1 tuần) + Sprint 1–6 (2 tuần)** ≈ 13 tuần |
 > | Quy mô backlog | **29 User Story · 137 Story Point** + 9 task nền tảng Sprint 0 |
-> | Tài liệu liên quan | `KE_HOACH_AGILE_QLSV.md`, `KE_HOACH_SPRINT_CHI_TIET.md`, `DANH_SACH_TASK_SPRINT.csv` |
+> | Tài liệu liên quan | `AGILE_QLSV.md`, `SPRINT_CHI_TIET.md`, `DANH_SACH_TASK_SPRINT.csv` |
 > | Cập nhật | 18/10/2026 |
 >
 > **Đọc nhanh:** Mục 2 = User Story + Acceptance Criteria · Mục 3 = Product Backlog · Mục 4–5 = kế hoạch & Sprint Backlog · Mục 6 = lộ trình phát hành · Mục 7 = backlog giai đoạn sau.
@@ -451,7 +451,7 @@
 | **Sprint 6** | 2 tuần | Báo cáo Excel/PDF, thông báo, hardening, tài liệu & bàn giao | US-26 → US-29 | 23 | 105 | Xuất PDF/Excel, gửi thông báo theo lớp, demo hội đồng |
 | **TỔNG** | **~13 tuần** | | **29 US** | **137** | **513,5** | ≈ **85,6 ngày công** (6 h/ngày) |
 
-> (*) Số giờ lấy từ `DANH_SACH_TASK_SPRINT.csv` và `KE_HOACH_SPRINT_CHI_TIET.md`, đã gồm công test + tài liệu + buffer. Sprint 6 có ~35–40 h cho UAT, hardening, tài liệu và slide nên SP thấp hơn nhưng giờ cao.
+> (*) Số giờ lấy từ `DANH_SACH_TASK_SPRINT.csv` và `SPRINT_CHI_TIET.md`, đã gồm công test + tài liệu + buffer. Sprint 6 có ~35–40 h cho UAT, hardening, tài liệu và slide nên SP thấp hơn nhưng giờ cao.
 >
 > **Năng lực tham chiếu:** 1 người × 6 h/ngày × 10 ngày = **60 h/2 tuần**. Các sprint 68–105 h cần **2 người** hoặc áp dụng quy tắc cắt scope ở mục 5.8. Sprint 0 chỉ 1 tuần nên 36,5 h là phù hợp.
 
@@ -674,7 +674,7 @@
 ### 8.2. Giả định
 
 - Nhóm **1–2 người**, mỗi ngày 6 h, 10 ngày/2 tuần; các "vai" Backend/Frontend/Tester/DevOps là **vai trò**, một người có thể kiêm nhiệm.
-- **ADR-04 đã được xác nhận** trước Sprint 4: trọng số QT 40% – Thi 60%, thang điểm chữ/hệ 4 theo mục 3.2 của `KE_HOACH_SPRINT_CHI_TIET.md`.
+- **ADR-04 đã được xác nhận** trước Sprint 4: trọng số QT 40% – Thi 60%, thang điểm chữ/hệ 4 theo mục 3.2 của `SPRINT_CHI_TIET.md`.
 - Các quyết định kỹ thuật đang áp dụng: **Tailwind CSS 4** (không Bootstrap), auth tự viết bằng guard có sẵn, phân quyền bằng `users.role` + enum + middleware, test trên SQLite `:memory:`.
 - Story Point là ước lượng **tương đối**; tổng 137 SP không phải tổng giờ. Giờ chi tiết lấy từ CSV.
 - Tài liệu này **kế thừa cấu trúc** của `Vi-du-sprint.pdf`; các User Story về thi trắc nghiệm trong PDF **không** thuộc phạm vi đồ án QLSV.
@@ -688,4 +688,4 @@
 
 ---
 
-*Hết tài liệu. Các file liên quan: `KE_HOACH_AGILE_QLSV.md` (kế hoạch cấp cao), `KE_HOACH_SPRINT_CHI_TIET.md` (task/AC kỹ thuật chi tiết), `DANH_SACH_TASK_SPRINT.csv` (nguồn task để import GitHub Projects/Trello).*
+*Hết tài liệu. Các file liên quan: `AGILE_QLSV.md` (kế hoạch cấp cao), `SPRINT_CHI_TIET.md` (task/AC kỹ thuật chi tiết), `DANH_SACH_TASK_SPRINT.csv` (nguồn task để import GitHub Projects/Trello).*

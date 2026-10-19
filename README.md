@@ -133,8 +133,9 @@ tests/Feature/        ApplicationTest, DatabaseSchemaTest
 
 ## 📚 Tài liệu dự án
 
-- [`KE_HOACH_AGILE_QLSV.md`](KE_HOACH_AGILE_QLSV.md) — kế hoạch Agile tổng thể
-- [`KE_HOACH_SPRINT_CHI_TIET.md`](KE_HOACH_SPRINT_CHI_TIET.md) — đặc tả chi tiết từng sprint (task, tiêu chí nghiệm thu, test, demo)
+- [`TAI_LIEU_TONG_HOP_QLSV.md`](TAI_LIEU_TONG_HOP_QLSV.md) — **tài liệu hợp nhất** (khuyến nghị đọc trước)
+- [`AGILE_QLSV.md`](AGILE_QLSV.md) — kế hoạch Agile tổng thể
+- [`SPRINT_CHI_TIET.md`](SPRINT_CHI_TIET.md) — đặc tả chi tiết từng sprint (task, tiêu chí nghiệm thu, test, demo)
 - [`DANH_SACH_TASK_SPRINT.csv`](DANH_SACH_TASK_SPRINT.csv) — danh sách task dạng bảng
 - [`USER_STORY_PRODUCT_BACKLOG.md`](USER_STORY_PRODUCT_BACKLOG.md) — User Story, Product Backlog và kế hoạch Sprint
 

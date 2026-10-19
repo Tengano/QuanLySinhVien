@@ -1,6 +1,6 @@
 # Kế hoạch SPRINT CHI TIẾT — Website Quản lý Sinh viên (QLSV)
 
-> Tài liệu này **chi tiết hoá** `KE_HOACH_AGILE_QLSV.md` (kế hoạch cấp cao) thành từng sprint có thể bắt tay làm ngay:
+> Tài liệu này **chi tiết hoá** `AGILE_QLSV.md` (kế hoạch cấp cao) thành từng sprint có thể bắt tay làm ngay:
 > mỗi task ghi rõ **ID – ước lượng – file cần tạo – migration – route – tiêu chí nghiệm thu (AC) – test – kịch bản demo**.
 >
 > | Hạng mục | Giá trị thực tế của repo |
@@ -785,7 +785,7 @@ Trong Controller luôn gọi `$this->authorize('nhapDiem', $course);` **trước
 
 ### 7.7. Acceptance Criteria
 
-- **AC4-1:** GV nhập QT=7.5, Thi=8.0 ⇒ TB = **7.80**, chữ **B+**, hệ 4 **3.5**, Đạt = *Đạt* (khớp bảng quy đổi ở mục 3.2).
+- **AC4-1:** GV nhập QT=7.5, Thi=8.0 ⇒ TB = **7.80**, chữ **B**, hệ 4 **3.0**, Đạt = *Đạt* (khớp bảng quy đổi ở mục 3.2).
 - **AC4-2:** GV B truy cập `/lop-hoc-phan/{lớp của GV A}/nhap-diem` ⇒ **403**.
 - **AC4-3:** Nhập điểm 10.5 hoặc `-1` ⇒ lỗi validate "Điểm phải nằm trong khoảng 0 – 10".
 - **AC4-4:** Sau khi **Chốt điểm**, mọi thao tác sửa ⇒ lỗi *"Điểm đã chốt, không thể sửa"*; form chuyển chế độ chỉ-đọc kèm badge "Đã chốt ngày …".
