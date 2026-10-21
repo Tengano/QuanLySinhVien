@@ -80,13 +80,13 @@ Nếu dùng **Laragon**: mở Laragon → *Start All*, sau đó truy cập domai
 
 ## 🔑 Tài khoản demo
 
-| Vai trò | Email | Mật khẩu |
+| Vai trò | Email |
 |---|---|---|
-| Admin | `admin@qlsv.test` | `Admin@123` |
-| Giáo vụ | `giaovu@qlsv.test` | `Giaovu@123` |
-| Giảng viên | `an.nguyen@qlsv.test` | `Giangvien@123` |
-| Giảng viên | `binh.tran@qlsv.test` | `Giangvien@123` |
-| Sinh viên | `sinhvien@qlsv.test` | `Sinhvien@123` |
+| Admin | `admin@qlsv.test` |
+| Giáo vụ | `giaovu@qlsv.test` |
+| Giảng viên | `an.nguyen@qlsv.test` |
+| Giảng viên | `binh.tran@qlsv.test` |
+| Sinh viên | `sinhvien@qlsv.test` |
 
 > Sinh viên demo `SV001 — Nguyễn Văn An` đã được liên kết với tài khoản `sinhvien@qlsv.test`.
 

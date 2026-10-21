@@ -99,7 +99,7 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
 
         if ($course->enrollments()->exists()) {
-            return back()->with('error', 'Không thể xoá lớp HP đã có sinh viên ghi danh.');
+            return back()->with('error', 'Không thể xoá lớp học phần đã có sinh viên ghi danh.');
         }
 
         try {
@@ -149,8 +149,8 @@ class CourseController extends Controller
     private function messages(): array
     {
         return [
-            'ma_lhp.required' => 'Vui lòng nhập mã lớp HP.',
-            'ma_lhp.unique' => 'Mã lớp HP đã tồn tại.',
+            'ma_lhp.required' => 'Vui lòng nhập mã lớp học phần.',
+            'ma_lhp.unique' => 'Mã lớp học phần đã tồn tại.',
             'subject_id.required' => 'Vui lòng chọn môn học.',
             'semester_id.required' => 'Vui lòng chọn học kỳ.',
             'so_sv_toi_da.required' => 'Vui lòng nhập sĩ số tối đa.',
