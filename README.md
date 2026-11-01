@@ -60,16 +60,11 @@ php artisan key:generate
 # 4. Tạo database rồi chạy migration
 php artisan migrate
 
-# 5. Tạo tài khoản quản trị đầu tiên (dự án không còn seeder demo)
-php artisan tinker
->>> App\Models\User::create(['name' => 'Quản trị viên', 'email' => 'admin@qlsv.test', 'password' => 'Admin@123', 'role' => 'admin', 'trang_thai' => true]);
->>> exit
-
-# 6. Cài & build asset frontend
+# 5. Cài & build asset frontend
 npm install
 npm run build
 
-# 7. Tạo symlink cho ảnh/upload
+# 6. Tạo symlink cho ảnh/upload
 php artisan storage:link
 ```
 
