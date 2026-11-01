@@ -63,9 +63,6 @@ npm run build
 php artisan storage:link
 ```
 
-Hoặc chạy nhanh toàn bộ bằng script có sẵn: `composer setup` (script chỉ chạy `migrate --force`, **không** tạo
-dữ liệu/tài khoản — vẫn cần làm bước 5 để có tài khoản đăng nhập).
-
 ## ▶️ Chạy dự án
 
 ```bash
