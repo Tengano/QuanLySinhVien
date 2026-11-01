@@ -29,10 +29,3 @@ SP2: Khoa/Ngành/Lớp  →  Môn học/Học kỳ  →  Sinh viên  →  Lớp 
 SP3: Nhập điểm  →  công thức tính điểm  →  chốt điểm  →  cổng sinh viên
 SP4: Dashboard  →  biểu đồ  →  export CSV  →  in bảng điểm  →  UAT
 ```
-
-## 4. Lưu ý
-
-- **Thông báo nội bộ** và **một số tiện ích** không có trong 5 hạng mục trên → để sau SP4 nếu còn thời gian.
-- Dự án **không dùng seeder và không có bộ test tự động**: dữ liệu nhập qua giao diện, tài khoản admin đầu tiên
-  tạo bằng `php artisan tinker`, kiểm thử thủ công theo checklist UAT.
-- Chi tiết task, tiêu chí nghiệm thu (AC), rủi ro và cách cắt scope: xem `KE_HOACH_4_SPRINT.md`.
