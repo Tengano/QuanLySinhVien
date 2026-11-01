@@ -1,8 +1,5 @@
 # Tổng hợp dự án Quản lý Sinh viên
 
-> File này gộp nội dung của 4 tài liệu cũ (`TAI_LIEU_TONG_HOP_QLSV.md`, `SPRINT_CHI_TIET.md`,
-> `USER_STORY_PRODUCT_BACKLOG.md`, `DANH_SACH_TASK_SPRINT.csv`) thành một bản **ngắn – dễ đọc**.
-
 ## 1. Dự án làm gì?
 
 Website quản lý sinh viên thay cho quản lý bằng Excel: quản lý khoa/ngành/lớp, hồ sơ sinh viên,
@@ -27,7 +24,7 @@ lớp học phần, nhập điểm – tính GPA, thống kê và báo cáo. H�
 | **Giảng viên** | Xem lớp được phân công, nhập điểm và chốt điểm lớp mình dạy |
 | **Sinh viên** | Xem bảng điểm, GPA của mình; nhận thông báo; xem dashboard cá nhân |
 
-## 4. 5 nhóm chức năng (theo đề cương)
+## 4. 5 nhóm chức năng 
 
 | # | Nhóm chức năng | Làm được gì |
 |---|---|---|
@@ -72,61 +69,4 @@ lớp học phần, nhập điểm – tính GPA, thống kê và báo cáo. H�
 | **SP2** | Tuần 3–4 | Khoa/Ngành/Lớp, Môn/Học kỳ, Sinh viên, Lớp học phần, ghi danh | Tạo đủ dữ liệu nền và mở lớp, ghi danh được |
 | **SP3** | Tuần 5–6 | Nhập điểm, tính điểm tự động, chốt điểm, sinh viên xem điểm/GPA | Nhập 8/9 → TB 8,60 (A); chốt xong không sửa được |
 | **SP4** | Tuần 7–8 | Dashboard, biểu đồ, xuất CSV, in bảng điểm | Có số liệu thống kê và báo cáo xuất được |
-
-> Chi tiết chia sprint: xem `PHAN_CHIA_SPRINT.md`.
-
-## 8. Cài đặt & chạy
-
-```bash
-composer install
-npm install && npm run build
-copy .env.example .env        # macOS/Linux: cp .env.example .env
-php artisan key:generate
-php artisan migrate
-php artisan storage:link
-php artisan serve             # http://127.0.0.1:8000
-```
-
-**Tạo tài khoản admin đầu tiên** (dự án không có seeder nên database trống sau khi migrate):
-
-```bash
-php artisan tinker
->>> App\Models\User::create(['name' => 'Quản trị viên', 'email' => 'admin@qlsv.test', 'password' => 'Admin@123', 'role' => 'admin', 'trang_thai' => true]);
-```
-
-Sau đó đăng nhập bằng tài khoản này, vào **Quản lý tài khoản** để tạo Giáo vụ / Giảng viên / Sinh viên.
-Toàn bộ dữ liệu mẫu (khoa, ngành, lớp, môn, sinh viên, lớp HP) nhập trực tiếp qua giao diện.
-
-## 9. Kiểm tra trước khi demo
-
-| Việc cần làm | Lệnh / cách kiểm tra |
-|---|---|
-| Code style | `vendor/bin/pint --test` |
-| Route & phân quyền | `php artisan route:list` |
-| Giao diện | `npm run build` rồi mở trình duyệt |
-| Chức năng | Kiểm thử thủ công theo checklist: đăng nhập 4 vai trò, 403 khi sai quyền, CRUD danh mục, import CSV, ghi danh, nhập/chốt điểm, xuất CSV, in bảng điểm |
-| Dữ liệu | Backup MySQL trước buổi demo |
-
-> Dự án **không dùng seeder và không có bộ test tự động** — kiểm thử bằng tay theo checklist trên.
-
-## 10. Rủi ro chính & cách xử lý
-
-| Rủi ro | Cách xử lý |
-|---|---|
-| Công thức/thang điểm khác quy chế | Chốt sớm với giảng viên/giáo vụ; mọi trọng số nằm trong `config/diem.php` |
-| Sửa điểm sau khi đã chốt | Dùng `grades.khoa_luc`, chặn ở controller, form chuyển chỉ đọc |
-| Người dùng xem dữ liệu người khác | Middleware `role` + `CoursePolicy`; không nhận `student_id` từ URL |
-| Quên build giao diện trước demo | Luôn chạy `npm run build` trong checklist |
-| Mất dữ liệu | Backup DB trước các thao tác rủi ro |
-
-## 11. Các file tài liệu
-
-| File | Nội dung |
-|---|---|
-| `TONG_HOP_QLSV.md` | **File này** — tổng hợp ngắn gọn toàn dự án |
-| `PHAN_CHIA_SPRINT.md` | Bảng chia 4 sprint (rất ngắn) |
-| `README.md` | Hướng dẫn cài đặt, chạy, cấu trúc thư mục |
-
-> 4 tài liệu cũ (`TAI_LIEU_TONG_HOP_QLSV.md`, `SPRINT_CHI_TIET.md`, `USER_STORY_PRODUCT_BACKLOG.md`,
-> `DANH_SACH_TASK_SPRINT.csv`) đã được gộp vào file này để tránh trùng lặp và dễ đọc hơn.
 
