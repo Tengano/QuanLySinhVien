@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Grade;
-use App\Models\Student;
+use App\Models\Diem;
+use App\Models\SinhVien;
 use Illuminate\Database\Eloquent\Builder;
 
 final class GpaService
@@ -17,15 +17,15 @@ final class GpaService
      *     mon_hoc: array<int, array<string, mixed>>
      * }
      */
-    public function tinh(Student $student, ?int $semesterId = null, bool $onlyLocked = false): array
+    public function tinh(SinhVien $student, ?int $semesterId = null, bool $onlyLocked = false): array
     {
-        $grades = Grade::query()
+        $grades = Diem::query()
             ->with(['enrollment.course.subject'])
             ->whereHas('enrollment', function (Builder $query) use ($student, $semesterId): void {
-                $query->where('student_id', $student->id);
+                $query->where('sinh_vien_id', $student->id);
 
                 if ($semesterId !== null) {
-                    $query->whereHas('course', fn (Builder $course) => $course->where('semester_id', $semesterId));
+                    $query->whereHas('course', fn (Builder $course) => $course->where('hoc_ky_id', $semesterId));
                 }
             })
             ->whereNotNull('diem_he4')

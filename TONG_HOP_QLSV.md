@@ -36,16 +36,21 @@ lớp học phần, nhập điểm – tính GPA, thống kê và báo cáo. H�
 
 > Ngoài 5 nhóm trên còn có phần **hỗ trợ**: quản lý sinh viên (hồ sơ, ảnh, import CSV), thông báo nội bộ.
 
-## 5. Dữ liệu chính (12 bảng)
+## 5. Dữ liệu chính (12 bảng — đã Việt hoá)
 
 | Nhóm dữ liệu | Bảng |
 |---|---|
-| Tài khoản | `users` (phân biệt vai trò bằng cột `role`) |
-| Danh mục | `faculties` (Khoa), `majors` (Ngành), `classes` (Lớp), `subjects` (Môn), `semesters` (Học kỳ) |
-| Sinh viên | `students` |
-| Lớp học phần | `courses` (lớp HP), `enrollments` (ghi danh) |
-| Điểm | `grades` (1 ghi danh ↔ 1 bộ điểm) |
-| Thông báo | `announcements`, `announcement_user` (ai đã đọc) |
+| Tài khoản | `nguoi_dung` (phân biệt vai trò bằng cột `vai_tro`) |
+| Danh mục | `khoa` (Khoa), `nganh` (Ngành), `lop` (Lớp), `mon_hoc` (Môn), `hoc_ky` (Học kỳ) |
+| Sinh viên | `sinh_vien` |
+| Lớp học phần | `lop_hoc_phan` (lớp HP), `ghi_danh` (ghi danh) |
+| Điểm | `diem` (1 ghi danh ↔ 1 bộ điểm) |
+| Thông báo | `thong_bao`, `thong_bao_nguoi_dung` (ai đã đọc) |
+
+> 8 bảng hạ tầng của Laravel giữ nguyên tên gốc: `migrations`, `cache`, `cache_locks`,
+> `jobs`, `job_batches`, `failed_jobs`, `sessions`, `password_reset_tokens`.
+> Các cột Laravel bắt buộc cũng giữ nguyên: `id`, `email`, `password`, `remember_token`,
+> `email_verified_at`, `created_at`, `updated_at`, `deleted_at`.
 
 **Quan hệ:** Khoa → Ngành → Lớp → Sinh viên; Môn + Học kỳ + Giảng viên → Lớp HP → Ghi danh → Điểm.
 

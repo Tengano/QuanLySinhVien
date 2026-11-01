@@ -74,17 +74,17 @@ npm run dev                # Vite dev server (hot reload)
 
 ```text
 app/
-├── Enums/            Role, GioiTinh, TrangThaiSinhVien, TrangThaiLopHocPhan, ...
+├── Enums/            VaiTro, GioiTinh, TrangThaiSinhVien, TrangThaiLopHocPhan, ...
 ├── Http/
-│   ├── Controllers/  Auth, MasterData, Student, Course, Enrollment, Grade, Announcement, Inbox, Portal, Report
-│   └── Middleware/   EnsureUserHasRole.php
-├── Models/           User, Faculty, Major, SchoolClass, Student, Subject, Semester, Course, Enrollment, Grade, Announcement
-├── Policies/         CoursePolicy
+│   ├── Controllers/  Auth, DanhMuc, SinhVien, LopHocPhan, GhiDanh, Diem, ThongBao, HopThu, CongSinhVien, BaoCao
+│   └── Middleware/   KiemTraVaiTro.php
+├── Models/           NguoiDung, Khoa, Nganh, Lop, SinhVien, MonHoc, HocKy, LopHocPhan, GhiDanh, Diem, ThongBao
+├── Policies/         LopHocPhanPolicy
 ├── Providers/        AppServiceProvider (rate limit đăng nhập)
 └── Services/         DiemService, GpaService, ThongKeService
 config/               diem.php
 database/             migrations
-resources/views/      layouts, partials, auth, dashboard, admin, students, courses, announcements, inbox, portal, reports
+resources/views/      bo-cuc, thanh-phan, xac-thuc, bang-dieu-khien, quan-tri, sinh-vien, lop-hoc-phan, thong-bao, hop-thu, cong-sinh-vien, bao-cao, ho-so
 routes/web.php
 ```
 
