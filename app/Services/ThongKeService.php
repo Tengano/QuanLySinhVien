@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\DB;
 final class ThongKeService
 {
     /**
+     * Số liệu tổng quan cho Admin / Giáo vụ.
+     *
+     * Lưu ý: kết quả được cache nên CHỈ chứa array/scalar, không chứa object
+     * (Collection, Model, stdClass...). Vì `config/cache.php` đặt
+     * `serializable_classes => false`, khi đọc lại cache các object sẽ bị
+     * unserialize thành `__PHP_Incomplete_Class` và gây lỗi
+     * "Attempt to read property ... on string" ở view.
+     *
      * @return array<string, mixed>
      */
     public function admin(): array
@@ -61,7 +69,9 @@ final class ThongKeService
                 ->groupBy('mon_hoc.ten_mh')
                 ->orderByRaw('COUNT(*) DESC')
                 ->limit(8)
-                ->get();
+                ->get()
+                ->map(static fn (object $row): array => (array) $row)
+                ->all();
 
             $diemTheoKy = DB::table('diem')
                 ->join('ghi_danh', 'diem.ghi_danh_id', '=', 'ghi_danh.id')
@@ -72,7 +82,9 @@ final class ThongKeService
                 ->groupBy('hoc_ky.id', 'hoc_ky.nam_hoc', 'hoc_ky.hoc_ky_so', 'hoc_ky.ten_hoc_ky')
                 ->orderBy('hoc_ky.nam_hoc')
                 ->orderBy('hoc_ky.hoc_ky_so')
-                ->get();
+                ->get()
+                ->map(static fn (object $row): array => (array) $row)
+                ->all();
 
             return compact('cards', 'svTheoKhoa', 'svTheoNganh', 'datRot', 'diemTheoKy');
         });

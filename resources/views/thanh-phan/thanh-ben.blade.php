@@ -12,7 +12,6 @@
             <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold">SV</span>
             <span>
                 <span class="block text-sm font-semibold">Quản lý sinh viên</span>
-                <span class="block text-xs text-slate-400">Học vụ số</span>
             </span>
         </a>
     </div>

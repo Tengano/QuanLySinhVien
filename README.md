@@ -4,27 +4,6 @@ Website quản lý sinh viên thay thế việc quản lý thủ công bằng Ex
 hồ sơ sinh viên, lớp học phần, nhập điểm – tính GPA, thống kê và báo cáo.
 Hệ thống có **4 vai trò**: **Admin**, **Giáo vụ**, **Giảng viên**, **Sinh viên**.
 
-- Mã nguồn theo mô hình MVC của Laravel; nghiệp vụ viết bằng **tiếng Việt** (tên bảng, cột, model, controller, route, view).
-- Cơ sở dữ liệu MySQL `qlsv`: **12 bảng nghiệp vụ đã Việt hoá** + 8 bảng hạ tầng mặc định của Laravel.
-- Giao diện Blade + Tailwind CSS (không dùng SPA); báo cáo xuất **CSV** (mở bằng Excel) và in/Lưu **PDF** từ trình duyệt.
-
-## 📚 Mục lục
-
-1. [Công nghệ sử dụng](#-công-nghệ-sử-dụng)
-2. [Kiến trúc & luồng xử lý](#-kiến-trúc--luồng-xử-lý)
-3. [Vai trò & quyền](#-vai-trò--quyền)
-4. [Chức năng theo phân hệ](#-chức-năng-theo-phân-hệ)
-5. [Yêu cầu hệ thống](#-yêu-cầu-hệ-thống)
-6. [Cài đặt](#️-cài-đặt)
-7. [Tạo tài khoản đầu tiên](#-tạo-tài-khoản-đầu-tiên)
-8. [Chạy dự án](#️-chạy-dự-án)
-9. [Cấu trúc thư mục](#-cấu-trúc-thư-mục)
-10. [Cơ sở dữ liệu](#️-cơ-sở-dữ-liệu)
-11. [Quy tắc nghiệp vụ](#-quy-tắc-nghiệp-vụ)
-12. [Quy ước code](#-quy-ước-code)
-13. [Lộ trình phát triển](#️-lộ-trình-phát-triển)
-14. [Tài liệu & ghi chú](#-tài-liệu--ghi-chú)
-
 ## 🧰 Công nghệ sử dụng
 
 | Thành phần | Công nghệ |

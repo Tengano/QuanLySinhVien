@@ -25,7 +25,7 @@
             </main>
 
             <footer class="border-t border-slate-200 bg-white px-4 py-3 text-center text-xs text-slate-500 lg:px-6">
-                Hệ thống quản lý sinh viên · Laravel {{ app()->version() }}
+                Hệ thống quản lý sinh viên · Designed by Nguyen Xuan Khoi
             </footer>
         </div>
     </div>
