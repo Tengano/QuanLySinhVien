@@ -110,10 +110,10 @@ class NguoiDungController extends Controller
             return back()->with('error', 'Hãy đổi mật khẩu ở trang hồ sơ cá nhân.');
         }
 
-        $password = 'Qlsv@123456';
+        $password = (string) config('qlsv.mat_khau_mac_dinh');
         $user->update(['password' => $password]);
 
-        return back()->with('success', "Đã đặt lại mật khẩu cho {$user->email}: {$password}");
+        return back()->with('success', "Đã đặt lại mật khẩu cho {$user->email}!");
     }
 
     public function toggleStatus(Request $request, string $id): RedirectResponse

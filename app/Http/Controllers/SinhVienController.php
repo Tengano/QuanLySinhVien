@@ -248,7 +248,7 @@ class SinhVienController extends Controller
             $out = fopen('php://output', 'w');
             fwrite($out, "\xEF\xBB\xBF");
             fputcsv($out, ['ma_sv', 'ho_ten', 'ngay_sinh', 'gioi_tinh', 'ma_lop', 'email', 'sdt', 'cccd', 'dia_chi']);
-            fputcsv($out, ['SV016', 'Nguyễn Văn Mẫu', '2005-01-01', 'nam', 'CNTT-K23-A', 'mau.nguyen@qlsv.test', '0912000016', '', 'Hà Nội']);
+            fputcsv($out, ['SV016', 'Nguyễn Văn Mẫu', '2005-01-01', 'nam', 'CNTT-K23-A', 'mau.nguyen@edu.vn', '0912000016', '', 'Hà Nội']);
             fclose($out);
         }, 'mau-import-sinh-vien.csv', ['Content-Type' => 'text/csv; charset=UTF-8']);
     }
@@ -406,8 +406,12 @@ class SinhVienController extends Controller
         $student->setRelation('user', $user);
     }
 
+    /**
+     * Mật khẩu mặc định khi tự tạo tài khoản đăng nhập cho sinh viên.
+     * Dùng chung với chức năng "Reset" của Admin qua config/qlsv.php.
+     */
     private function defaultPassword(): string
     {
-        return 'Qlsv@'.now()->format('dmY');
+        return (string) config('qlsv.mat_khau_mac_dinh');
     }
 }

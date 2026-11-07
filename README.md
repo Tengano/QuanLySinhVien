@@ -52,7 +52,7 @@ Request
 |---|---|---|
 | **Xác thực & hồ sơ** | Đăng nhập/đăng xuất (có “ghi nhớ đăng nhập”, chặn 5 lần/phút), hồ sơ cá nhân, đổi mật khẩu | `login`, `login.store`, `logout`, `profile.edit/update/password` |
 | **Bảng điều khiển** | Dashboard theo vai trò: thẻ số liệu, SV theo khoa/ngành, tỉ lệ đạt–rớt theo môn, điểm TB theo kỳ (Admin/Giáo vụ); lớp phụ trách (Giảng viên); GPA cá nhân (Sinh viên) | `dashboard` |
-| **Quản trị tài khoản** | Danh sách (tìm kiếm/lọc theo vai trò, trạng thái), tạo, sửa, xoá, khoá/mở khoá, reset mật khẩu về `Qlsv@123456` | `users.*` |
+| **Quản trị tài khoản** | Danh sách (tìm kiếm/lọc theo vai trò, trạng thái), tạo, sửa, xoá, khoá/mở khoá, reset mật khẩu về `11111111` | `users.*` |
 | **Danh mục** | Khoa, Ngành, Lớp hành chính, Môn học, Học kỳ: CRUD, tìm kiếm, chặn xoá khi còn dữ liệu con | `danh-muc.khoa.*`, `danh-muc.nganh.*`, `danh-muc.lop.*`, `danh-muc.mon-hoc.*`, `danh-muc.hoc-ky.*` |
 | **Sinh viên** | CRUD hồ sơ, ảnh đại diện, tạo tài khoản đăng nhập kèm hồ sơ, tìm kiếm/lọc (khoa, ngành, lớp, giới tính, trạng thái), xoá mềm + thùng rác + khôi phục, import CSV, tải file mẫu, xuất CSV | `students.*` |
 | **Lớp học phần** | Mở lớp từ Môn + Học kỳ + Giảng viên (mã lớp HP, phòng, lịch, sĩ số tối đa, trạng thái), sửa/xoá, xem chi tiết | `courses.index/show/create/store/edit/update/destroy` |
@@ -116,8 +116,8 @@ Chạy `php artisan tinker` rồi dán đoạn sau (mật khẩu được tự b
 ```php
 App\Models\NguoiDung::create([
     'ho_ten'     => 'Quản trị viên',
-    'email'      => 'admin@qlsv.test',
-    'password'   => 'Qlsv@123456',
+    'email'      => 'admin@edu.vn',
+    'password'   => '11111111',
     'vai_tro'    => 'admin',
     'trang_thai' => true,
 ]);
@@ -126,7 +126,7 @@ App\Models\NguoiDung::create([
 Tương tự với `'vai_tro' => 'giao_vu' | 'giang_vien' | 'sinh_vien'`.
 
 Tài khoản sinh viên nên tạo từ màn **Sinh viên → Thêm sinh viên** (tick “Tạo tài khoản đăng nhập”):
-mật khẩu mặc định là `Qlsv@dmY` (ví dụ `Qlsv@02112026`), Admin có thể reset về `Qlsv@123456`.
+mật khẩu mặc định là `11111111` (lấy từ `config/qlsv.php` → `mat_khau_mac_dinh`, ghi đè được bằng biến môi trường `QLSV_MAT_KHAU_MAC_DINH`), Admin có thể reset về đúng giá trị này.
 
 ## ▶️ Chạy dự án
 

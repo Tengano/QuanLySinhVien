@@ -24,7 +24,7 @@
                     <label for="email" class="mb-1 block text-sm font-medium text-slate-700">Email</label>
                     <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus
                            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                           placeholder="admin@qlsv.test">
+                           placeholder="Tài khoản">
                 </div>
 
                 <div>
