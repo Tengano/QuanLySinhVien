@@ -48,10 +48,11 @@ class LopHocPhan extends Model
     {
         return $this->belongsTo(NguoiDung::class, 'giang_vien_id');
     }
-
+    
     public function enrollments(): HasMany
     {
-        return $this->hasMany(GhiDanh::class, 'lop_hoc_phan_id');
+        return $this->hasMany(GhiDanh::class, 'lop_hoc_phan_id')
+            ->whereHas('student');
     }
 
     public function students(): BelongsToMany
