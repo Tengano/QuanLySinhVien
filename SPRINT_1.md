@@ -2,16 +2,6 @@
 
 ## 0. Phạm vi Sprint 1
 
-Trích `PHAN_CHIA_SPRINT.md`:
-
-> **SP1 (tuần 1–2):** Đăng nhập/đăng xuất cho **Admin, Giáo vụ, Giảng viên, Sinh viên** · phân quyền menu & route · quản lý tài khoản (tạo, khoá, reset mật khẩu) · hồ sơ + đổi mật khẩu
->
-> **Kết quả demo:** 4 vai trò vào đúng màn hình của mình; sinh viên mở `/users` → **403**
->
-> **Thứ tự thực hiện:** Layout + đăng nhập → phân quyền → quản lý tài khoản → hồ sơ
-
-Dự án **không có thư mục riêng cho từng sprint**; code SP1 nằm rải trong `app/`, `resources/views/`, `database/` và đã được SP2–SP4 chỉnh sửa thêm. Danh sách dưới đây chia theo 3 tầng:
-
 | Tầng | Ý nghĩa | Số file |
 |---|---|---|
 | **A. Cốt lõi SP1** | Bỏ đi thì tính năng SP1 mất hoặc sai yêu cầu | **27** |
