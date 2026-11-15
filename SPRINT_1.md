@@ -1,14 +1,4 @@
-# Sprint 1 — Danh sách file liên quan
-
-## 0. Phạm vi Sprint 1
-
-| Tầng | Ý nghĩa | Số file |
-|---|---|---|
-| **A. Cốt lõi SP1** | Bỏ đi thì tính năng SP1 mất hoặc sai yêu cầu | **27** |
-| **B. Hạ tầng dùng chung** | Cần để app/build chạy, không thuộc riêng SP1 | 18 mục |
-| **C. Phụ thuộc runtime** | Cần để màn hình SP1 render không lỗi (nội dung thuộc SP2–SP4) | 12 nhóm |
-
-**Tổng hợp nhóm A theo loại file:**
+# Sprint 1
 
 | Loại | Số file | File |
 |---|---|---|
@@ -90,13 +80,6 @@
 | `config/filesystems.php` | Disk `public` cho avatar (`storage/app/public`) | 41–48 |
 | `bootstrap/app.php` | Alias middleware `role`; redirect khách → `login`; user đã đăng nhập → `/dashboard` | 16–21 |
 
-### A8. Biến môi trường — 2 file
-
-| File | Vai trò trong SP1 | Bằng chứng |
-|---|---|---|
-| `.env.example` | `QLSV_MAT_KHAU_MAC_DINH`, `SESSION_DRIVER=database`, `CACHE_STORE=database` | dòng 43; 30; 40 |
-| `.env` | Giá trị thật đang chạy (`SESSION_DRIVER=database`, `CACHE_STORE=database`, `APP_KEY` đã set) | không commit (gitignored) |
-
 ---
 
 ## B. NHÓM HẠ TẦNG DÙNG CHUNG (SP1 phụ thuộc, không tính riêng SP1)
@@ -111,8 +94,6 @@
 | Backend dependencies | `composer.json`, `composer.lock` | Autoload `App\*`, framework, PHPUnit (dev) |
 | Web entry | `public/index.php`, `public/.htaccess`, `artisan` | Chạy app qua Apache/Laragon và CLI |
 | Lưu avatar | `public/storage` (junction → `storage/app/public`), `storage/app/public/.gitignore` | `HoSoCaNhanController` lưu file vào disk `public` |
-
-**Lưu ý:** các file trên **không nên đưa vào báo cáo “file của Sprint 1”**, nhưng nếu thiếu thì SP1 không chạy được.
 
 ---
 
